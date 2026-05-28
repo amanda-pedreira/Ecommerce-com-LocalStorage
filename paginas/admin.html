@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Administrativo | Nutri+ Suplementos</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <h1>Nutri<span>+</span></h1>
+            <p>Performance e Saúde de Verdade</p>
+        </div>
+        <div class="divIcones-header">
+            <a href="login.html" class="icone-header">
+                <i class="fa-solid fa-user"></i>
+            </a>
+
+            <a href="carrinho.html" class="icone-header">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Início</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contatos.html">Contatos</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        
+        <div class="form-produto">
+            <h3>Cadastrar Novo Produto</h3>
+            <form id="formAdmin-produtos">
+                <label for="nome-novo">Nome do Suplemento</label>
+                <input type="text" id="nome-novo" placeholder="Nome do Suplemento" required>
+                <label for="preco-novo">Preço</label>
+                <input type="number" id="preco-novo" placeholder="Ex: 99.90" required>
+                <label for="img-novo">Imagem</label>
+                <input type="text" id="img-novo" placeholder="Ex: whey.jpg">
+                <label for="categoria-novo">Categoria</label>
+                <select name="categoria-novo" id="categoria-novo">
+                    <option value="">Selecione a Categoria</option>
+                    <option value="Proteínas">Proteínas</option>
+                    <option value="Pré-Treinos">Pré-Treinos</option>
+                </select>
+                <button type="submit" class="button">Salvar Produtos</button>
+            </form>
+        </div>
+
+        <div class="produtos-fixos">
+            <h3>Produtos Fixos</h3>
+            <div id="lista-produtos-fixos"></div>
+        </div>
+
+        <div class="produtos-localStorage">
+            <h3>Produtos (LocalStorage)</h3>
+            <div id="lista-produtos-localStorage"></div>
+            <button id="button-limparTudo">Limpar Todos Produtos do LocalStorage</button>
+        </div>
+
+    </main>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>
+
