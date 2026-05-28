@@ -1,0 +1,192 @@
+body{
+    background-color: #f9f9f9;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Padrão */
+.header{
+    background-color: rgb(129, 3, 129);
+    color: white;
+    padding: 20px;
+    height: auto;
+}
+
+.logo{
+    display: inline-block;
+}
+
+.logo h1{
+    font-size: 35px;
+    margin-bottom: 0;
+}
+
+.logo span{
+    color: yellow;
+}
+
+.logo p{
+    margin-top: 0;
+    font-size: 13px;
+}
+
+.divIcones-header{
+    float: right;
+    margin-top: 30px;
+}
+
+.icone-header{
+    color: white;
+    padding: 15px;
+    font-size: 20px;
+}
+
+.icone-header:hover{
+    color: rgb(169, 102, 169);
+}
+
+nav{
+    background-color: rgb(201, 74, 201);
+}
+
+nav ul{
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+
+nav ul li{
+    display: inline-block;
+    padding: 15px 30px;
+}
+
+nav ul li a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li:hover{
+    background-color: rgb(205, 85, 205);
+}
+
+footer{
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+footer a{
+    color: white;
+    text-decoration: none;
+}
+
+
+.container{
+    margin-top: 30px;
+}
+
+.container h2{
+    text-align: center;
+}
+
+.container-produtos{
+    background-color: white;
+    width: 90%;
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    margin: auto;
+}
+
+.container-forms{
+    background-color: white;
+    width: 50%;
+    margin: auto;
+}
+
+.div-form{
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.div-form label{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.div-form input{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid gray;
+} 
+
+.button-acesso{
+    background-color: rgb(94, 0, 94);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.button-acesso:hover{
+    background-color: rgb(126, 3, 126);
+}
+
+
+@media(max-width:600px){
+
+    .header{
+        text-align: center;
+    }
+
+    .divIcones-header{
+        float: none;
+        margin-top: 15px;
+    }
+
+    nav ul{
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li{
+        width: 10%;
+        text-align: center;
+    }
+
+    .container-produtos{
+        width: 90%;
+    }
+
+
+}
+
+
+.produto-card{
+    background-color: white;
+    width: 250px;
+    display: inline-block;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    vertical-align: top;
+    border: 1px solid #ccc;
+}
+
+.produto-card h3{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.preco{
+    color: purple;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
