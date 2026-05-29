@@ -1,32 +1,125 @@
 const produtos = [
-    { id: 1, nome: "Whey Protein", preco: 189.90, img: "https://th.bing.com/th/id/OIP.7l_LBNCNlTARpwu7CwTk8AHaHa?w=209&h=209&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3https://th.bing.com/th/id/OIP.7l_LBNCNlTARpwu7CwTk8AHaHa?w=209&h=209&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3", categoria: "" },
-    { id: 2, nome: "Creatina Monohidratada", preco: 95.00, img: "https://tse1.mm.bing.net/th/id/OIP.SbheUmMLqTmrzeyQTFkS9gHaHa?rs=1&pid=ImgDetMain&o=7&rm=3", categoria: "" },
-    { id: 3, nome: "Pré-Treino", preco: 129.90, img: "https://tse3.mm.bing.net/th/id/OIP.d9foxfeIDRVI6DMifaEE9QHaHa?rs=1&pid=ImgDetMain&o=7&rm=3", categoria: "" },
-    { id: 4, nome: "BCAA Recuperação", preco: 65.00, img: "https://tse4.mm.bing.net/th/id/OIP.t-g2cnk7Mr31sSKqB9vunwHaIB?rs=1&pid=ImgDetMain&o=7&rm=3", categoria: "" },
-    { id: 5, nome: "Hipercalórico Mass", preco: 85.00, img: "https://tse1.mm.bing.net/th/id/OIP.m04hY_8vMY0Pm4vfRkylwwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3", categoria: "" },
-    { id: 6, nome: "Multivitamínico", preco: 49.90, img: "https://tse4.mm.bing.net/th/id/OIP.LRkepfu12oiiu0Z3tdQLmwHaL2?rs=1&pid=ImgDetMain&o=7&rm=3", categoria: "" }
+    { id: 1, nome: "Whey Protein", preco: 110.00, img: "https://images.pexels.com/photos/36429468/pexels-photo-36429468.png", categoria: "Proteínas", destaque: "Sim", estoque: 30},
+    { id: 2, nome: "Albumina", preco: 89.90, img: "https://images.pexels.com/photos/17820729/pexels-photo-17820729.jpeg", categoria: "Proteínas", destaque: "Não", estoque: 6 },
+    { id: 3, nome: "Bebida Energética", preco: 8.90, img: "https://images.pexels.com/photos/4386027/pexels-photo-4386027.jpeg", categoria: "Energia", destaque: "Sim", estoque: 30 },
+    { id: 4, nome: "Cafeína em Cápsula", preco: 39.90, img: "https://images.pexels.com/photos/4046999/pexels-photo-4046999.jpeg", categoria: "Energia", destaque: "Sim", estoque: 4 },
+    { id: 5, nome: "Pasta de Amendoim", preco: 29.90, img: "https://images.pexels.com/photos/5149346/pexels-photo-5149346.jpeg", categoria: "Alimentação", destaque: "Sim", estoque: 50 },
+    { id: 6, nome: "Barra de Proteína", preco: 10.90, img: "https://images.pexels.com/photos/13111782/pexels-photo-13111782.jpeg", categoria: "Alimentação", destaque: "Não", estoque: 60 },
+    { id: 7, nome: "Aveia em Flocos", preco: 14.90, img: "https://images.pexels.com/photos/8108077/pexels-photo-8108077.jpeg", categoria: "Alimentação", destaque: "Sim", estoque: 70 },
 ];
+
+// Pega os produtos do localStorage. Depois adiciona na variavel produtoNovo, e produtoNovo é adicionado no fim da lista do produtos
+const produtosLocalStorage = JSON.parse(localStorage.getItem('produtos'));
+
+
+if(produtosLocalStorage){
+    produtosLocalStorage.forEach(produtoNovo => {
+        produtos.push(produtoNovo);
+    });
+}
+
+
+function carregarDestaques() {
+    
+    const listandoProdutosDestaque = document.getElementById('lista-produtosDestaque');
+    if (!listandoProdutosDestaque) return;
+
+    // Percorre cada linha do array e adiciona em prod, depois faz o processo do card.
+    produtos.forEach(prod => {
+
+        if(prod.destaque === "Sim" && prod.estoque > 5){
+            const card = document.createElement('div');
+            card.className = 'produto-card';
+            
+            card.innerHTML = `
+                <div class="container-foto">
+                    <img src="${prod.img}" alt="${prod.nome}">
+                </div>
+                <div class="container-conteudo">
+                    <h3>${prod.nome}</h3>
+                    <p>${prod.categoria}</p>
+                    <p class="preco">R$ ${prod.preco}</p>
+                </div>
+                <div class="button-container">
+                    <a class="button-card" href="../paginas/detalhesProduto.html">Comprar Agora</a>
+                </div>
+
+                    `;
+            listandoProdutosDestaque.appendChild(card);
+
+        }
+        
+    });
+}
+
+
 
 function carregarProdutos() {
     const listandoProdutos = document.getElementById('lista-produtos');
     if (!listandoProdutos) return;
 
-    produtos.forEach(prod => {
-        const card = document.createElement('div');
-        card.className = 'produto-card';
-        
-        card.innerHTML = `
-            <div class="container-foto">
-                <img src="${prod.img}" alt="${prod.nome}">
-            </div>
-            <h3>${prod.nome}</h3>
-            <p>${prod.categoria}</p>
-            <p class="preco">R$ ${prod.preco.toFixed(2)}</p>
-            <a class="button-card" href="../paginas/detalhesProduto.html">Comprar Agora</a>
-        `;
+    listandoProdutos.innerHTML = "";
 
-        listandoProdutos.appendChild(card);
+    // Percorre cada linha do array e adiciona em prod, depois faz o processo do card.
+    produtos.forEach(prod => {
+
+        if(categoriaSelecionada === "Todos" || prod.categoria === categoriaSelecionada){
+            if(prod.estoque >= 5){
+                const card = document.createElement('div');
+                card.className = 'produto-card';
+                
+                card.innerHTML = `
+                <div class="container-foto">
+                    <img src="${prod.img}" alt="${prod.nome}">
+                </div>
+                <div class="container-conteudo">
+                    <h3>${prod.nome}</h3>
+                    <p>${prod.categoria}</p>
+                    <p class="preco">R$ ${prod.preco}</p>
+                </div>
+                <div class="button-container">
+                    <a class="button-card" href="../paginas/detalhesProduto.html">Comprar Agora</a>
+                </div>
+
+                    `;
+
+                listandoProdutos.appendChild(card);
+            }else{
+                const card = document.createElement('div');
+                card.className = 'produto-card';
+            card.innerHTML = `
+                <div class="faixa-ultimas-unidades">
+                    Últimas Unidades!
+                </div>
+
+                <div class="container-foto">
+                    <img src="${prod.img}" alt="${prod.nome}">
+                </div>
+                <div class="container-conteudo">
+                    <h3>${prod.nome}</h3>
+                    <p>${prod.categoria}</p>
+                    <p class="preco">R$ ${prod.preco}</p>
+                </div>
+                <div class="button-container">
+                    <a class="button-card" href="../paginas/detalhesProduto.html">Comprar Agora</a>
+                </div>
+            `;
+                listandoProdutos.appendChild(card);
+            }
+        }
+        
+        
     });
 }
 
-window.reload = carregarProdutos;
+let categoriaSelecionada = "Todos";
+function filtrarCategoria(categoria){
+    categoriaSelecionada = categoria;
+    carregarProdutos();
+}
+
+
+window.onload = function() {
+    carregarDestaques();
+    carregarProdutos();
+}
